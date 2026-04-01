@@ -1,0 +1,55 @@
+[manifest]
+version = "1.0.0"
+priority = 0
+
+
+[[patches]]
+[patches.pattern]
+target = 'functions/UI_definitions.lua'
+pattern = '''
+if obj and obj.set_badges and type(obj.set_badges) == 'function' then
+    obj:set_badges(card, badges)
+end
+'''
+position = 'before'
+payload = '''
+
+if card and card.config and card.config.center and card.config.center.set and card.config.center.set == "creamerycons" and not card.config.center.ignore_type_badge then
+   if card.config.center.set and card.config.center.nptrarity == "rarecreamery" then
+        badges[#badges+1] = create_badge("Rare", G.C.RARITY[3], G.C.WHITE, 1.2)
+    end
+end
+if card and card.config and card.config.center and card.config.center.set and card.config.center.set == "Joker" and not card.config.center.ignore_type_badge then
+    if card.config.center.nptflavor == "Vanilla" then
+        badges[#badges+1] = create_badge("Vanilla", HEX("EDCA7E"), G.C.WHITE, 1.2)
+    elseif card.config.center.nptflavor == "Chocolate" then
+        badges[#badges+1] = create_badge("Chocolate", HEX("8F4F30"), G.C.WHITE, 1.2)
+    elseif card.config.center.nptflavor == "Strawberry" then
+        badges[#badges+1] = create_badge("Strawberry", HEX("FFA2E5"), G.C.WHITE, 1.2)
+    end
+end
+if card and card.config and card.config.center and card.config.center.set and card.config.center.tjseries == 'npt' and not card.config.center.ignore_type_badge then
+    badges[#badges+1] = create_badge("Neopolitan Series", G.ARGS.LOC_COLOURS.neapolitan, G.C.WHITE, 1.2)
+end
+'''
+match_indent = true
+times = 1
+
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = '''
+if self.ability.set == 'Booster' or self.ability.set == 'Spectral' then
+    self.children.center:draw_shader('booster', nil, self.ARGS.send_to_shader)
+end
+'''
+
+position = 'before'
+payload = '''
+if self.ability.config.center.iscreamery == 'true' then
+    badges[#badges+1] = create_badge("I Fucking hate this why wont this shader go away", HEX("EDCA7E"), G.C.WHITE, 1.2)
+end
+'''
+
+match_indent = true
+times = 1
