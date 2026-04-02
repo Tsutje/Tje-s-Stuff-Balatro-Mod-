@@ -1,0 +1,5 @@
+assert(SMODS.load_file('items/Enhancements/sullied.lua'))()
+assert(SMODS.load_file('items/Enhancements/candied.lua'))()
+assert(SMODS.load_file('items/Enhancements/shell.lua'))()
+assert(SMODS.load_file('items/Enhancements/sullied.lua'))()
+assert(SMODS.load_file('items/Enhancements/fadedremnant.lua'))()

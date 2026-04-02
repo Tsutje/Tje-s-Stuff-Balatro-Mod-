@@ -1,0 +1,6 @@
+assert(SMODS.load_file('items/Jokers/Legacy/cami.lua'))()
+assert(SMODS.load_file('items/Jokers/Legacy/luxu.lua'))()
+-- assert(SMODS.load_file('items/Jokers/Legacy/momonga.lua'))()
+a-- ssert(SMODS.load_file('items/Jokers/Legacy/machinelove.lua'))()
+-- assert(SMODS.load_file('items/Jokers/Legacy/rakko.lua'))()
+--assert(SMODS.load_file('items/Jokers/Legacy/scorchinggratification.lua'))()
